@@ -19,31 +19,32 @@ import com.praveen.financialtracker.service.UserService;
 @RestController
 @RequestMapping("/financial")
 public class UserController {
-	
+
 	@Autowired
 	private UserService userService;
-	
+
 	@GetMapping(value = "/userdetails")
-	public ResponseEntity<List<UserModel>> getAllUsersDetails()
-	{
+	public ResponseEntity<List<UserModel>> getAllUsersDetails() {
 		return ResponseEntity.ok().body(userService.fetchUsers());
 	}
-	
+
+	@GetMapping(value = "/userdetails/{userId}")
+	public ResponseEntity<UserModel> getUsersDetails(@PathVariable Long userId) {
+		return ResponseEntity.ok().body(userService.fetchUserById(userId));
+	}
+
 	@PostMapping(value = "/save/user")
-	public ResponseEntity<UserModel> saveUser(@RequestBody UserModel userModel)
-	{
+	public ResponseEntity<UserModel> saveUser(@RequestBody UserModel userModel) {
 		return ResponseEntity.ok().body(userService.saveUser(userModel));
 	}
 
 	@PutMapping(value = "/update/user")
-	public ResponseEntity<UserModel> updateUser(@RequestBody UserModel userModel)
-	{
+	public ResponseEntity<UserModel> updateUser(@RequestBody UserModel userModel) {
 		return ResponseEntity.ok().body(userService.updateUser(userModel));
 	}
-	
+
 	@DeleteMapping(value = "/delete/user/{userId}")
-	public ResponseEntity<UserModel> deleteUser(@PathVariable Long userId)
-	{
+	public ResponseEntity<UserModel> deleteUser(@PathVariable Long userId) {
 		userService.deleteUser(userId);
 		return ResponseEntity.ok().build();
 	}

@@ -16,55 +16,60 @@ import com.praveen.financialtracker.repository.CategoryRepository;
 
 @Service
 public class CategoryService {
-	
+
 	@Autowired
 	CategoryRepository categoryRepository;
-	
-	public List<CategoryModel> fetchCategory()
-	{
+
+	public List<CategoryModel> fetchCategory() {
 		List<Category> categories = categoryRepository.findAll();
 		List<CategoryModel> categoryModelList = new ArrayList<CategoryModel>();
-		for(Category category : categories)
-		{
+		for (Category category : categories) {
 			CategoryModel categoryModel = new CategoryModel();
 			BeanUtils.copyProperties(category, categoryModel);
 			categoryModelList.add(categoryModel);
 		}
-		
+
 		return categoryModelList;
 	}
-	
-	public CategoryModel saveCategory(CategoryModel categoryModel)
-	{
+
+	public CategoryModel fetchCategoryById(Long id) {
+		Optional<Category> categoryOptional = categoryRepository.findById(id);
+		CategoryModel categoryModel = new CategoryModel();
+
+		if (categoryOptional.isPresent()) {
+			Category category = categoryOptional.get();
+			BeanUtils.copyProperties(category, categoryModel);
+		}
+
+		return categoryModel;
+	}
+
+	public CategoryModel saveCategory(CategoryModel categoryModel) {
 		Category category = new Category();
 		BeanUtils.copyProperties(categoryModel, category);
 		category = categoryRepository.save(category);
 		BeanUtils.copyProperties(category, categoryModel);
 		return categoryModel;
 	}
-	
-	public CategoryModel updateCategory(CategoryModel categoryModel)
-	{
+
+	public CategoryModel updateCategory(CategoryModel categoryModel) {
 		Category category = new Category();
 		BeanUtils.copyProperties(categoryModel, category);
 		Optional<Category> categoryById = categoryRepository.findById(categoryModel.getId());
-		
-		if(categoryById.isPresent()) 
-		{
+
+		if (categoryById.isPresent()) {
 			category = categoryById.get();
 			category.setCategoryName(categoryModel.getCategoryName());
-			category = categoryRepository.save(categoryById.get());
+			category = categoryRepository.save(category);
 			BeanUtils.copyProperties(category, categoryModel);
 		}
 		return categoryModel;
 	}
-	
-	public void deleteCategory(Long id)
-	{
+
+	public void deleteCategory(Long id) {
 		Optional<Category> categoryById = categoryRepository.findById(id);
-		
-		if(categoryById.isPresent()) 
-		{
+
+		if (categoryById.isPresent()) {
 			categoryRepository.delete(categoryById.get());
 		}
 	}

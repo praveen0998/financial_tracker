@@ -16,35 +16,35 @@ import org.springframework.web.bind.annotation.RestController;
 import com.praveen.financialtracker.model.CategoryModel;
 import com.praveen.financialtracker.service.CategoryService;
 
-
 @RestController
 @RequestMapping("/financial")
 public class CategoryController {
-	
+
 	@Autowired
 	private CategoryService categoryService;
-	
+
 	@GetMapping(value = "/categories")
-	public ResponseEntity<List<CategoryModel>> getAllCategoriesDetails()
-	{
+	public ResponseEntity<List<CategoryModel>> getAllCategoriesDetails() {
 		return ResponseEntity.ok().body(categoryService.fetchCategory());
 	}
-	
+
+	@GetMapping(value = "/categories/{catergoryId}")
+	public ResponseEntity<CategoryModel> getCategoriesDetails(@PathVariable Long catergoryId) {
+		return ResponseEntity.ok().body(categoryService.fetchCategoryById(catergoryId));
+	}
+
 	@PostMapping(value = "/save/category")
-	public ResponseEntity<CategoryModel> saveCategory(@RequestBody CategoryModel categoryModel)
-	{
+	public ResponseEntity<CategoryModel> saveCategory(@RequestBody CategoryModel categoryModel) {
 		return ResponseEntity.ok().body(categoryService.saveCategory(categoryModel));
 	}
-	
+
 	@PutMapping(value = "/update/category")
-	public ResponseEntity<CategoryModel> updateCategory(@RequestBody CategoryModel categoryModel)
-	{
+	public ResponseEntity<CategoryModel> updateCategory(@RequestBody CategoryModel categoryModel) {
 		return ResponseEntity.ok().body(categoryService.updateCategory(categoryModel));
 	}
-	
+
 	@DeleteMapping(value = "/delete/category/{catergoryId}")
-	public ResponseEntity<CategoryModel> deleteCategory(@PathVariable Long catergoryId)
-	{
+	public ResponseEntity<CategoryModel> deleteCategory(@PathVariable Long catergoryId) {
 		categoryService.deleteCategory(catergoryId);
 		return ResponseEntity.ok().build();
 	}

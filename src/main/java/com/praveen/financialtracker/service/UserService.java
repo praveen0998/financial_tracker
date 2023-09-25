@@ -10,8 +10,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.praveen.financialtracker.model.CategoryModel;
+import com.praveen.financialtracker.model.ExpenseModel;
 import com.praveen.financialtracker.model.UserModel;
 import com.praveen.financialtracker.model.entity.Category;
+import com.praveen.financialtracker.model.entity.Expense;
 import com.praveen.financialtracker.model.entity.User;
 import com.praveen.financialtracker.repository.UserRepository;
 
@@ -24,8 +26,7 @@ public class UserService {
 	public List<UserModel> fetchUsers() {
 		List<User> userList = userRepository.findAll();
 		List<UserModel> userModelList = new ArrayList<UserModel>();
-		for(User user : userList)
-		{
+		for (User user : userList) {
 			UserModel userModel = new UserModel();
 			userModel.setId(user.getId());
 			userModel.setUserEmailId(user.getUserEmailId());
@@ -34,6 +35,18 @@ public class UserService {
 		}
 
 		return userModelList;
+	}
+
+	public UserModel fetchUserById(Long id) {
+		Optional<User> userOptional = userRepository.findById(id);
+		UserModel userModel = new UserModel();
+
+		if (userOptional.isPresent()) {
+			User user = userOptional.get();
+			BeanUtils.copyProperties(user, userModel);
+		}
+
+		return userModel;
 	}
 
 	public UserModel saveUser(UserModel userModel) {
@@ -51,10 +64,10 @@ public class UserService {
 
 		if (userById.isPresent()) {
 			user = userById.get();
-			//user.setCategory(userModel.getCategory());
+			// user.setCategory(userModel.getCategory());
 			user.setUserEmailId(userModel.getUserEmailId());
 			user.setUserName(userModel.getUserName());
-			user = userRepository.save(userById.get());
+			user = userRepository.save(user);
 			BeanUtils.copyProperties(user, userModel);
 		}
 		return userModel;

@@ -27,7 +27,7 @@ public class Expense {
 	@Column(name="EXPENSE_ID")
 	private Long id;
 	@Column(name="EXPENSE_DATE")
-	private Instant expenseDate;
+	private String expenseDate;
 	@Column(name="EXPENSE_DESCRIPTION")
 	private String expenseDescription;
 	@ManyToOne(fetch = FetchType.LAZY)

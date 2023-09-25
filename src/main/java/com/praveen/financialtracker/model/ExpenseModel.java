@@ -2,9 +2,6 @@ package com.praveen.financialtracker.model;
 
 import java.time.Instant;
 
-import com.praveen.financialtracker.model.entity.Category;
-import com.praveen.financialtracker.model.entity.User;
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -15,9 +12,9 @@ import lombok.NoArgsConstructor;
 public class ExpenseModel {
 	
 	private Long id;
-	private Instant expenseDate;
+	private String expenseDate;
 	private String expenseDescription;
-	private Category category;
-	private User user;
+	private CategoryModel category;
+	private UserModel user;
 
 }
