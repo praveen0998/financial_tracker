@@ -9,9 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.praveen.financialtracker.model.CategoryModel;
-import com.praveen.financialtracker.model.UserModel;
 import com.praveen.financialtracker.model.entity.Category;
-import com.praveen.financialtracker.model.entity.User;
 import com.praveen.financialtracker.repository.CategoryRepository;
 
 @Service

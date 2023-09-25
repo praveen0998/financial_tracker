@@ -1,7 +1,6 @@
 package com.praveen.financialtracker.service;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -9,11 +8,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.praveen.financialtracker.model.CategoryModel;
-import com.praveen.financialtracker.model.ExpenseModel;
 import com.praveen.financialtracker.model.UserModel;
-import com.praveen.financialtracker.model.entity.Category;
-import com.praveen.financialtracker.model.entity.Expense;
 import com.praveen.financialtracker.model.entity.User;
 import com.praveen.financialtracker.repository.UserRepository;
 
