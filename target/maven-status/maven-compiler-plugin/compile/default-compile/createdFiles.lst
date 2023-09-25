@@ -1,8 +1,14 @@
-com\praveen\financialtracker\model\entity\Category.class
 com\praveen\financialtracker\model\entity\User.class
+com\praveen\financialtracker\model\entity\Expense.class
+com\praveen\financialtracker\controller\UserController.class
+com\praveen\financialtracker\model\CategoryModel.class
+com\praveen\financialtracker\model\ExpenseModel.class
+com\praveen\financialtracker\model\entity\Category.class
 com\praveen\financialtracker\repository\UserRepository.class
+com\praveen\financialtracker\model\UserModel.class
 com\praveen\financialtracker\FinancialTrackerApplication.class
 com\praveen\financialtracker\repository\ExpenseRepository.class
-com\praveen\financialtracker\controller\CustomController.class
-com\praveen\financialtracker\model\entity\Expense.class
 com\praveen\financialtracker\repository\CategoryRepository.class
+com\praveen\financialtracker\controller\CategoryController.class
+com\praveen\financialtracker\service\CategoryService.class
+com\praveen\financialtracker\service\UserService.class
